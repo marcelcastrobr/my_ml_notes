@@ -8,7 +8,7 @@ The contents of this repository are provided for informational purposes only.
 * [Forecasting]((./docs/Forecasting.md))
 
 #### Generative AI
-* [Large Language Models](./doc/Large_Language_Models.md)
+* [Large Language Models](./docs/Large_Language_Models.md)_
 * [Resource Glossary](./docs/Resource_Glossary.md)
 
 ## References
