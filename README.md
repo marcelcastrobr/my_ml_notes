@@ -9,7 +9,12 @@ The contents of this repository are provided for informational purposes only.
 
 #### Generative AI
 * [Large Language Models](./docs/Large_Language_Models.md)_
-* [Resource Glossary](./docs/Resource_Glossary.md)
+
+* [RAG (Retrieval Augumented Generation)](./docs/RAG.md)
+
+* [Evaluating LLMs](./docs/Evaluating_LLMs.md)
+
+  [Resource Glossary](./docs/Resource_Glossary.md)
 
 ## References
 * TBD

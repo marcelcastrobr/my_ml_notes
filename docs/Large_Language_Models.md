@@ -1,10 +1,40 @@
-# Large Language Models
+##### Large Language Models
 
 
 
 ## Promp Engineering versus RAG versus Fine Tuning 
 
-![image-20231114095532083](./assets/image-20231114095532083.png)
+![image-20231114095854888](./assets/image-20231114095854888.png)
+
+
+
+Prompt engineering example:
+
+![image-20231114100356222](./assets/image-20231114100356222.png)
+
+
+
+RAG versus Fine tuning
+
+![image-20231114100618413](./assets/image-20231114100618413.png)
+
+Example from OpenAI
+
+![image-20231114101043664](./assets/image-20231114101043664.png)
+
+Re-ranking: Apply across enconder or rule-based.
+
+Classification step: having. the model to classify domain and give extra metadata on the prompt.
+
+Tools: category of questions, e.g.. figures, acccess to SQL databases, etc..
+
+Query expansion: List of question in prompt executed in paralell.
+
+##### How to evaluate?
+
+Picture below is based on [RAGAS -   *Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines*](https://github.com/explodinggradients/ragas). Re. AWS-Bedrock example [here](https://github.com/explodinggradients/ragas/blob/132d5cd10fd9c0856543a4da43fc43c6d7b57ec4/docs/howtos/customisations/aws-bedrock.ipynb) and blog to ry [here](https://explodinggradients.com/evaluating-rag-pipelines-with-ragas-langsmith).
+
+![image-20231114102045866](./assets/image-20231114102045866.png)
 
 
 
@@ -165,7 +195,7 @@ Guide to when to prompt versus fine tuning considering different organizations?
 
 
 
-![image-20230526134141878](LLM.assets/image-20230526134141878.png)
+
 
 ![image-20230526134156518](LLM.assets/image-20230526134156518.png)
 
@@ -224,7 +254,9 @@ Proximal Policy Optimization ([PPO](https://openai.com/research/openai-baselines
 
 
 
+## Responsible AI
 
+[Responsible Generative AI: A Code of Ethics for the Future](https://www.toptal.com/artificial-intelligence/future-of-generative-ai-ethics)
 
 
 

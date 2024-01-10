@@ -1,0 +1,125 @@
+# Evaluating_LLMs
+
+## 
+
+![image-20231114103324871](/Users/marcasbr/Documents/3-github/my_ml_notes/docs/assets/image-20231114103324871.png)
+
+Ref. [All about evaluating Large language models](https://explodinggradients.com/all-about-evaluating-large-language-models)
+
+
+
+## Evaluating Embeddings
+
+Ref. [Amazon Bedrock: How good (bad) is Titan Embeddings?](https://www.philschmid.de/amazon-titan-embeddings) 
+
+
+
+## Evaluating Models
+
+
+
+## Evaluating RAG
+
+LLM application evaluation is very important due to the nature of the non-deterministic behaviour of the models.
+
+Every RAG evaluation need to consider the following components:
+
+- **Retriever**: responsible for retrieval of most relevant information from the knowledge store to answer the query. 
+- **Generator**: responsible to generate a answer based on retrieved information.
+
+The performance of the retriever is influeced by the ***chunking strategy*** and ***embedding model*** used, while the performance of the generator is influenced by the selection of the ***model*** and ***prompt*** technique.
+
+### RAGAS (Retrieval Augmented Generation Assessment)
+
+[RAGAS Paper](https://arxiv.org/pdf/2309.15217v1.pdf).
+
+**Generation**:
+
+- **faithfulness**:  the factual consistency of the answer to the context base on the question.
+- **answer_relevancy**: a measure of how relevant the answer is to the question
+
+**Retrieval**:
+
+- **context_precision**: a measure of how relevant the retrieved context is to the question. Conveys quality of the retrieval pipeline.
+- **context_recall**: measures the ability of the retriever to retrieve all the necessary information needed to answer the question.
+
+```python
+from ragas.metrics import (
+    answer_relevancy,
+    faithfulness,
+    context_recall,
+    context_precision,
+)
+```
+
+Picture below is based on [RAGAS -   *Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines*](https://github.com/explodinggradients/ragas). Re. AWS-Bedrock example [here](https://github.com/explodinggradients/ragas/blob/132d5cd10fd9c0856543a4da43fc43c6d7b57ec4/docs/howtos/customisations/aws-bedrock.ipynb) and blog to try [here](https://explodinggradients.com/evaluating-rag-pipelines-with-ragas-langsmith).
+
+![image-20231114102045866](./assets/image-20231114102045866.png)
+
+
+
+### **faithfulness** (generation):  
+
+the factual consistency of the answer to the context base on the question. Performed in two step:
+
+- step 1: given question and answer, LLM is used to create **list of statements** from answers. 
+- step 2: given the list of statements, LLM check if statement provided is supported by the context. Number of correct statement is summed and divided by total statements
+
+### **answer_relevancy** (generation): 
+
+a measure of how relevant the answer is to the question. It evaluates how closely the generated answer aligns with the initial question or instruction,
+
+Given an answer the LLM find out the **probable questions** that the generated answer would be an answer to and computes similarity to the actual question asked.
+
+The implementation looks like:
+
+- Step 1: Generate a question(s) for the given answer
+
+```bash
+Generate a question for the given answer.
+answer: [answer]
+```
+
+- Step 2: obtain embeddings for all questions using the text-embedding-ada-002 model from OpenAI.
+- Step3: For each generated question, calculate similarity with the original question as cosine between the embeddings.
+
+
+
+![image-20231122092153476](./assets/image-20231122092153476.png)
+
+### context_precision (retrieval):
+
+a measure of how relevant the retrieved context is to the question. Conveys quality of the retrieval pipeline.
+
+Also know as **context relevancy**, it measures the signal-to-noise ration in the retrieved contexts. Given a question, LLMs figure out sentences from the retrieved context that are needed to answer the question.
+
+This metrics aims to penalise inclusion of redundant information. The steps used to calculate the metric are:
+
+- step 1: Given a question q and its context c(q), LLM extracts a subset of sentences Sext from c(q) that are crucial to answer q using the prompt below.
+
+*Please extract relevant sentences from the provided context that can potentially help answer the following question. If no relevant sentences are found, or if you believe the question cannot be answered from the given context, return the phrase "Insufficient Information". While extracting candidate sentences you’re not allowed to make any changes to sentences from given context*
+
+- step 2: 
+
+### Lanchain ContextQAEvalChain
+
+
+
+### **AWS Internal tools:**
+
+Margareth: Clarify
+
+Messi: 
+
+Prompt evaluation:
+
+[RAG + Amazon Bedrock + Knowledge Base](https://github.com/aws-samples/bedrock-kb-rag-workshop)
+
+## Reference:
+
+- Paper: [Can LLMs follow Simple Rules?](https://arxiv.org/pdf/2311.04235.pdf)
+- Paper: [FELM: Benchmarking Factuality Evaluation of Large Language Models](https://arxiv.org/pdf/2310.00741.pdf)
+- Blog: [Evaluate LLMs and RAG a practical example using Langchain and Hugging Face](https://www.philschmid.de/evaluate-llm)
+- LLM Evaluation using ML flow: https://mlflow.org/docs/latest/llms/llm-evaluate/index.html
+- 
+
