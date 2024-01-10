@@ -1,4 +1,6 @@
-##### Large Language Models
+# Large Language Models
+
+[TOC]
 
 
 
@@ -181,9 +183,7 @@ Ref. [The Ultimate Battle of Language Models: Lit-LLaMA vs GPT3.5 vs Bloom vs â€
 
 ### Commercial versus Licensed Models in HuggingFace
 
-![image-20230713081934382](./assets/image-20230713081934382.png)
 
-Ref. Amazon Broadcastr: [LLMs for the rest of us â€“ Build open source LLMs & democratize GenAI w/ Hugging Face](https://broadcast.amazon.com/videos/819711) (Blue color -> can use commercially)
 
 
 
@@ -201,13 +201,11 @@ Guide to when to prompt versus fine tuning considering different organizations?
 
 # Parameter Efficient Fine Tuning Methods:
 
-![image-20230710123611117](./assets/image-20230710123611117.png)
-
 [Ref.scaling down to scale up a guide to parameter-efficient fine-tuning](https://arxiv.org/abs/2303.15647)
 
 #### LoRA: Low-Rank Adaptation of LLMs
 
-![image-20230824113423168](./assets/image-20230824113423168.png)
+
 
 
 

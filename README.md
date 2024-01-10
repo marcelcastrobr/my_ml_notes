@@ -1,26 +1,18 @@
-# Playbooks
+# My Notes
 The contents of this repository are provided for informational purposes only. 
 
-
-
-## Playbook Index
+## Index
 ### Machine Learning
-* [Forecasting]((./docs/Forecasting.md))
+* [Forecasting](./docs/Forecasting.md)
 
 #### Generative AI
-* [Large Language Models](./docs/Large_Language_Models.md)_
+* [Large Language Models](./docs/Large_Language_Models.md)
 
 * [RAG (Retrieval Augumented Generation)](./docs/RAG.md)
 
 * [Evaluating LLMs](./docs/Evaluating_LLMs.md)
 
-  [Resource Glossary](./docs/Resource_Glossary.md)
 
-## References
-* TBD
-
-
-## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
 

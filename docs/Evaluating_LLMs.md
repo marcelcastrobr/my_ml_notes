@@ -1,8 +1,6 @@
 # Evaluating_LLMs
 
-## 
-
-![image-20231114103324871](/Users/marcasbr/Documents/3-github/my_ml_notes/docs/assets/image-20231114103324871.png)
+![image-20231114103324871](./assets/image-20231114103324871.png)
 
 Ref. [All about evaluating Large language models](https://explodinggradients.com/all-about-evaluating-large-language-models)
 
@@ -107,19 +105,19 @@ This metrics aims to penalise inclusion of redundant information. The steps used
 
 ### **AWS Internal tools:**
 
-Margareth: Clarify
 
-Messi: 
-
-Prompt evaluation:
 
 [RAG + Amazon Bedrock + Knowledge Base](https://github.com/aws-samples/bedrock-kb-rag-workshop)
 
 ## Reference:
 
 - Paper: [Can LLMs follow Simple Rules?](https://arxiv.org/pdf/2311.04235.pdf)
+
 - Paper: [FELM: Benchmarking Factuality Evaluation of Large Language Models](https://arxiv.org/pdf/2310.00741.pdf)
+
 - Blog: [Evaluate LLMs and RAG a practical example using Langchain and Hugging Face](https://www.philschmid.de/evaluate-llm)
+
 - LLM Evaluation using ML flow: https://mlflow.org/docs/latest/llms/llm-evaluate/index.html
-- 
+
+  
 
