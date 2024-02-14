@@ -8,6 +8,7 @@ The contents of this repository are provided for informational purposes only.
 
 
 ### Machine Learning
+* [Embedding](./docs/Embeddings.md)
 * [Forecasting](./docs/Forecasting.md)
 
 #### Generative AI
