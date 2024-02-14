@@ -27,7 +27,9 @@ Every RAG evaluation need to consider the following components:
 
 The performance of the retriever is influeced by the ***chunking strategy*** and ***embedding model*** used, while the performance of the generator is influenced by the selection of the ***model*** and ***prompt*** technique.
 
-### RAGAS (Retrieval Augmented Generation Assessment)
+
+
+## RAGAS (Retrieval Augmented Generation Assessment)
 
 [RAGAS Paper](https://arxiv.org/pdf/2309.15217v1.pdf).
 
@@ -99,15 +101,52 @@ This metrics aims to penalise inclusion of redundant information. The steps used
 
 - step 2: 
 
-### Lanchain ContextQAEvalChain
 
 
+## **[AWS FMEval](https://github.com/aws/fmeval)**
 
-### **AWS Internal tools:**
+FMEval library can help to evaluate:
 
+-  Open-ended generation
+- Text summarization
+- Question and answer
+- Classification
 
+Metrics implemented by tool are:
+
+- Accuracy
+- Toxiticy
+- Semantic Robustness
+- Prompt Stereotyping
 
 [RAG + Amazon Bedrock + Knowledge Base](https://github.com/aws-samples/bedrock-kb-rag-workshop)
+
+
+
+## Lanchain ContextQAEvalChain
+
+
+
+## [Langchain Evaluation](https://python.langchain.com/docs/guides/evaluation/)
+
+
+
+## [LLMTest_NeedleInAHaystack](https://github.com/gkamradt/LLMTest_NeedleInAHaystack)
+
+
+
+
+
+
+
+| Tool   | Metrics                                                      |      |
+| ------ | ------------------------------------------------------------ | ---- |
+| RAGAS  | Generation: faithfulness, answer_relevancy<br />Retrieval: context precision, context recall |      |
+| FMEval | Accuracy, Toxiticy, Semantic robustness, prompt stereotyping |      |
+|        |                                                              |      |
+|        |                                                              |      |
+
+
 
 ## Reference:
 

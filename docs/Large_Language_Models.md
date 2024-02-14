@@ -2,6 +2,12 @@
 
 [TOC]
 
+## Background
+
+![example.png](./assets/example-20240125084439497.png)
+
+Figure by [UbiquitousLearning/Efficient LLM and Foundation Models](UbiquitousLearning/Efficient LLM and Foundation Models)
+
 
 
 ## Promp Engineering versus RAG versus Fine Tuning 
@@ -204,6 +210,12 @@ Guide to when to prompt versus fine tuning considering different organizations?
 [Ref.scaling down to scale up a guide to parameter-efficient fine-tuning](https://arxiv.org/abs/2303.15647)
 
 #### LoRA: Low-Rank Adaptation of LLMs
+
+
+
+Reference:
+
+[1] [LoRA Serving on Amazon SageMaker — Serve 100’s of Fine-Tuned LLMs For the Price of 1](https://medium.com/@joaopcmoura/lora-serving-on-amazon-sagemaker-serve-100s-of-fine-tuned-llms-for-the-price-of-1-85034ef889c5)
 
 
 
