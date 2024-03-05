@@ -2,7 +2,7 @@
 
 [TOC]
 
-## Background
+# Background
 
 ![example.png](./assets/example-20240125084439497.png)
 
@@ -10,47 +10,23 @@ Figure by [UbiquitousLearning/Efficient LLM and Foundation Models](UbiquitousLea
 
 
 
-## Promp Engineering versus RAG versus Fine Tuning 
+# Prompt versus Fine Tune versus Pre-training
 
-![image-20231114095854888](./assets/image-20231114095854888.png)
-
-
-
-Prompt engineering example:
-
-![image-20231114100356222](./assets/image-20231114100356222.png)
+Guide to when to prompt versus fine tuning considering different organizations? 
 
 
 
-RAG versus Fine tuning
+![image-20230526134156518](LLM.assets/image-20230526134156518.png)
 
-![image-20231114100618413](./assets/image-20231114100618413.png)
+# 
 
-Example from OpenAI
-
-![image-20231114101043664](./assets/image-20231114101043664.png)
-
-Re-ranking: Apply across enconder or rule-based.
-
-Classification step: having. the model to classify domain and give extra metadata on the prompt.
-
-Tools: category of questions, e.g.. figures, acccess to SQL databases, etc..
-
-Query expansion: List of question in prompt executed in paralell.
-
-##### How to evaluate?
-
-Picture below is based on [RAGAS -   *Evaluation framework for your Retrieval Augmented Generation (RAG) pipelines*](https://github.com/explodinggradients/ragas). Re. AWS-Bedrock example [here](https://github.com/explodinggradients/ragas/blob/132d5cd10fd9c0856543a4da43fc43c6d7b57ec4/docs/howtos/customisations/aws-bedrock.ipynb) and blog to ry [here](https://explodinggradients.com/evaluating-rag-pipelines-with-ragas-langsmith).
-
-![image-20231114102045866](./assets/image-20231114102045866.png)
-
-
-
-## Optimizing LLM Inference
+# Optimizing LLM Inference
 
 Techniques such as quantization and distilation has been used to reduce model size.
 
 For example the **[Int8](https://arxiv.org/abs/2208.07339)** inference can reduce memory footprint of large models by a factor of 2x.
+
+## Quantization
 
 ### Precision Format
 
@@ -108,10 +84,6 @@ A side effect of this quantization is the the model can suffer performance degra
 
 Falcon Models
 
-
-
-
-
 | Model                      | Layers | d_model | Head_dim | Vocabulary | Sequence length | Hardware                  | GPU Memory required                         | Pretraining length [tokens] | Pretraining compute [PF-days] | K,V-cache size for a 2.048 context |
 | -------------------------- | ------ | ------- | -------- | ---------- | --------------- | ------------------------- | ------------------------------------------- | --------------------------- | ----------------------------- | ---------------------------------- |
 | tiiuae/falcon-40b-instruct | 60     | 8192    | 64       | 65024      | 2048            | 64 A100 40GB in p4d.      | [~90GB](https://huggingface.co/blog/falcon) | 1.0 Trillion                | 2800                          | 20MB                               |
@@ -127,53 +99,55 @@ AWS Instances:
 | g5.48xlarge | 768GB  | 192vCPU | 8    | 192GiB     | NVIDIA A10G | 7600GB          | $18.1823 hourly |
 |             |        |         |      |            |             |                 |                 |
 
+**Reference:**
+
+- [Quantization by HuggingFace](https://huggingface.co/docs/transformers/quantization?bnb=4-bit)
 
 
-Error example while trying to run Falcon 40B on g5.12xlarge.
-
-![image-20230613100920418](LLM.assets/image-20230613100920418.png)
 
 
 
-Error while trying to run Falcon 40B on g5.48xlarge
+## Parameter Efficient Fine Tuning
 
-```bash
----------------------------------------------------------------------------
-ModelError                                Traceback (most recent call last)
-File <timed exec>:13
+[PEFT](https://github.com/huggingface/peft), or Parameter  Efficient Fine-tuning, is  a Hugging Face open-source library to enable efficient adaptation of pre-trained language models (PLMs) to  various downstream applications without fine-tuning all the model's  parameters. PEFT currently includes techniques for:
 
-File /opt/conda/lib/python3.10/site-packages/sagemaker/base_predictor.py:167, in Predictor.predict(self, data, initial_args, target_model, target_variant, inference_id)
-    137 """Return the inference from the specified endpoint.
-    138 
-    139 Args:
-   (...)
-    161         as is.
-    162 """
-    164 request_args = self._create_request_args(
-    165     data, initial_args, target_model, target_variant, inference_id
-    166 )
---> 167 response = self.sagemaker_session.sagemaker_runtime_client.invoke_endpoint(**request_args)
-    168 return self._handle_response(response)
+- (Q)LoRA: [LORA: LOW-RANK ADAPTATION OF LARGE LANGUAGE MODELS](https://arxiv.org/pdf/2106.09685.pdf)
 
-File /opt/conda/lib/python3.10/site-packages/botocore/client.py:530, in ClientCreator._create_api_method.<locals>._api_call(self, *args, **kwargs)
-    526     raise TypeError(
-    527         f"{py_operation_name}() only accepts keyword arguments."
-    528     )
-    529 # The "self" in this scope is referring to the BaseClient.
---> 530 return self._make_api_call(operation_name, kwargs)
+- Prefix Tuning: [P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks](https://arxiv.org/pdf/2110.07602.pdf)
 
-File /opt/conda/lib/python3.10/site-packages/botocore/client.py:964, in BaseClient._make_api_call(self, operation_name, api_params)
-    962     error_code = parsed_response.get("Error", {}).get("Code")
-    963     error_class = self.exceptions.from_code(error_code)
---> 964     raise error_class(parsed_response, operation_name)
-    965 else:
-    966     return parsed_response
+- P-Tuning: [GPT Understands, Too](https://arxiv.org/pdf/2103.10385.pdf)
 
-ModelError: An error occurred (ModelError) when calling the InvokeEndpoint operation: Received server error (0) from primary with message "Your invocation timed out while waiting for a response from container primary. Review the latency metrics for each container in Amazon CloudWatch, resolve the issue, and try again.". See https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logEventViewer:group=/aws/sagemaker/Endpoints/falcon-40b-instruct-bf16-2023-06-13-08-05-40-744 in account 754992829378 for more information.
-​
-```
+- Prompt Tuning: [The Power of Scale for Parameter-Efficient Prompt Tuning](https://arxiv.org/pdf/2104.08691.pdf)
+
+- IA3: [Infused Adapter by Inhibiting and Amplifying Inner Activations](https://arxiv.org/abs/2205.05638)
+
+  
 
 
+
+#### LoRA: Low-Rank Adaptation of LLMs
+
+#### QLORA:
+
+
+
+**Reference:**
+
+[1] [LoRA Serving on Amazon SageMaker — Serve 100’s of Fine-Tuned LLMs For the Price of 1](https://medium.com/@joaopcmoura/lora-serving-on-amazon-sagemaker-serve-100s-of-fine-tuned-llms-for-the-price-of-1-85034ef889c5)
+
+[2] [LoRA by HuggingFace](https://huggingface.co/docs/diffusers/main/en/training/lora)
+
+[3] [Github example: Fine-tune LLaMA 2 on Amazon SageMaker](https://github.com/philschmid/sagemaker-huggingface-llama-2-samples/blob/master/training/sagemaker-notebook.ipynb)
+
+[4] [GitHub example: Fine-tune LLaMA 2 models on SageMaker JumpStart](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/jumpstart-foundation-models/llama-2-finetuning.ipynb)
+
+[5] [GitHub example: Fine-tune and deploy LLaMA V2 models on AWS Trainiumhttps://aws.amazon.com/ec2/instance-types/trn1/ and AWS Inferentiahttps://aws.amazon.com/ec2/instance-types/inf2/ based instances in SageMaker JumpStart](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/jumpstart-foundation-models/aws-trainium-inferentia-finetuning-deployment/llama-2-trainium-inferentia-finetuning-deployment.ipynb)
+
+[6] [Ref.scaling down to scale up a guide to parameter-efficient fine-tuning](https://arxiv.org/abs/2303.15647)
+
+[7] [LoRA Paper](https://arxiv.org/pdf/2106.09685.pdf)
+
+[8] [LoRA Land: Fine-Tuned Open-Source LLMs that Outperform GPT-4](https://predibase.com/blog/lora-land-fine-tuned-open-source-llms-that-outperform-gpt-4)
 
 # Price of Training LLMs
 
@@ -193,29 +167,7 @@ Ref. [The Ultimate Battle of Language Models: Lit-LLaMA vs GPT3.5 vs Bloom vs �
 
 
 
-# Prompt versus Fine Tune versus Pre-training
 
-Guide to when to prompt versus fine tuning considering different organizations? 
-
-
-
-
-
-
-
-![image-20230526134156518](LLM.assets/image-20230526134156518.png)
-
-# Parameter Efficient Fine Tuning Methods:
-
-[Ref.scaling down to scale up a guide to parameter-efficient fine-tuning](https://arxiv.org/abs/2303.15647)
-
-#### LoRA: Low-Rank Adaptation of LLMs
-
-
-
-Reference:
-
-[1] [LoRA Serving on Amazon SageMaker — Serve 100’s of Fine-Tuned LLMs For the Price of 1](https://medium.com/@joaopcmoura/lora-serving-on-amazon-sagemaker-serve-100s-of-fine-tuned-llms-for-the-price-of-1-85034ef889c5)
 
 
 

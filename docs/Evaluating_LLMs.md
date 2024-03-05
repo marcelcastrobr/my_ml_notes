@@ -103,7 +103,7 @@ This metrics aims to penalise inclusion of redundant information. The steps used
 
 
 
-## **[AWS FMEval](https://github.com/aws/fmeval)**
+## **[AWS FMEval](https://github.com/aws/fmeval)** (by Amazon)
 
 FMEval library can help to evaluate:
 
@@ -120,6 +120,30 @@ Metrics implemented by tool are:
 - Prompt Stereotyping
 
 [RAG + Amazon Bedrock + Knowledge Base](https://github.com/aws-samples/bedrock-kb-rag-workshop)
+
+
+
+Presentation on evaluation and migration.
+
+29th Feb. Fine tuning evaluation.
+
+
+
+FMEval Turbo
+
+UA, cost estimation
+
+
+
+
+
+## [LightEval](https://github.com/huggingface/lighteval) (By HuggingFace)
+
+`lighteval` was originally built on top of the great [Eleuther AI Harness](https://github.com/EleutherAI/lm-evaluation-harness) (which is powering the [Open LLM Leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard)). We also took a lot of inspiration from the amazing [HELM](https://crfm.stanford.edu/helm/latest/), notably for metrics.
+
+Metrics:
+
+- 
 
 
 
