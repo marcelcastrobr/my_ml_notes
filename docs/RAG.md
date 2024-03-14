@@ -100,11 +100,25 @@ Ensure the revised SQL query aligns precisely with the requirements outlined in 
 
 ## Advanced RAG Techniques:
 
-Standard RAG methods can only retriev contiguous chunks from the document corpus, lacking understanding of the overall document context. Therefore the need for advanced RAG methods that allow solution to understand long document context and integrate knowledge from multiple parts of a text, such as an entire book.
+Figure below presents the common failures of a standard RAG method by [Barnett S. et al.](https://arxiv.org/pdf/2401.05856.pdf). Basically those possible common failures are:
+
+- **Missing content**: cannot answer a question since documents is not available.
+- **Missed the Top Ranked Documents:** answer to question was not ranked high enougth thus not appear in result.
+- **Not in Context - Consolidation strategy Limitations**: answer did not make into the context for generating the final answer.
+- **Not Extracted**: answer present in context but LLM does not present in final answer.
+- **Wrong Format:** LLM ignore certain formats 
+- **Incorrect Specificity**: answer in LLM response but not specific enougth.
+- **Incomplete**: answer not incorrect but miss information.
+
+![image-20240306175319053](./assets/image-20240306175319053.png)
+
+Picture by [Authors](https://arxiv.org/pdf/2401.05856.pdf)
+
+Furthermore, standard RAG methods can only retrieve contiguous chunks from the document corpus, lacking understanding of the overall document context. Therefore the need for advanced RAG methods that allow solution to understand long document context and integrate knowledge from multiple parts of a text, such as an entire book.
 
 
 
-## [RAPTOR - Recursive Abstractive Processing For Tree-Organized Retrieval](https://arxiv.org/html/2401.18059v1)
+## [RAPTOR - Recursive Abstractive Processing For Tree-Organized Retrieval](htt	ps://arxiv.org/html/2401.18059v1)
 
 RAPTOR is an indexing and retrieval system that uses a tree structure to capture both high-level and low-level details about a text. RAPTOR cluster chunks of text, generates text summaries of those clusters and then repeats, generating a tree from the bottom up. This allows it to load into an LLM´s context chunks representing the text at different levels so that it can effectively and efficienltl answer questions at different levels.
 
@@ -157,7 +171,7 @@ Langchain implementation: https://github.com/langchain-ai/langchain/blob/master/
 
 ### [Graph Neural Network with Large Language Models (Amazon)](https://www.amazon.science/publications/graph-neural-prompting-with-large-language-models)
 
-
+GNN method has th
 
 ![image-20240305230513487](./assets/image-20240305230513487.png)
 

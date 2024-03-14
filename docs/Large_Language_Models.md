@@ -10,6 +10,10 @@ Figure by [UbiquitousLearning/Efficient LLM and Foundation Models](UbiquitousLea
 
 
 
+![image-20240312162920195](./assets/image-20240312162920195.png)
+
+Picture from:   Training Large  Foundation Models Using SageMaker HyperPod   by Ian Gibbs - Senior PMT-ES in AI/ML - Gen AI Enablement Weekly Series
+
 # Prompt versus Fine Tune versus Pre-training
 
 Guide to when to prompt versus fine tuning considering different organizations? 
