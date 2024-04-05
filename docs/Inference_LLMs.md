@@ -33,6 +33,16 @@ Picture from [2]
 
 
 
+## LLM Benchmark
+
+Foundation Model benchmarking tool (FMBench) built using Amazon SageMaker - https://github.com/aws-samples/foundation-model-benchmarking-tool
+
+
+
+Benchmark and optimize endpoint deployment in Amazon SageMaker JumpStart  - https://aws.amazon.com/blogs/machine-learning/benchmark-and-optimize-endpoint-deployment-in-amazon-sagemaker-jumpstart/
+
+
+
 ## References:
 
 - [1] Benchmark and optimize endpoint deployment in Amazon SageMaker JumpStart - https://aws.amazon.com/blogs/machine-learning/benchmark-and-optimize-endpoint-deployment-in-amazon-sagemaker-jumpstart/

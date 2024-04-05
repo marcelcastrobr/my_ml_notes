@@ -8,7 +8,13 @@ How:
 
 
 
-### Sharded Data Parallelism
+Parallelism to the rescue when the model is too big.
+
+![image-20240318143745019](./assets/image-20240318143745019.png)
+
+Picture by Thomas from HuggingFace (ref. [4])
+
+### Data Parallelism
 
 
 
@@ -47,3 +53,5 @@ MiCS reduces the communication overhead by decreasing the number of participants
 [2] Blog: [Train gigantic models with near-linear scaling using sharded data parallelism on Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/train-gigantic-models-with-near-linear-scaling-using-sharded-data-parallelism-on-amazon-sagemaker/) 
 
 [3] Paper: [MiCS: Near-linear Scaling for Training Gigantic MOdel on Public Cloud.](https://arxiv.org/pdf/2205.00119.pdf)
+
+[4] Presentation: [Little guide to building Large Language Models in 2024](https://docs.google.com/presentation/d/1IkzESdOwdmwvPxIELYJi8--K3EZ98_cL6c5ZcLKSyVg/edit#slide=id.g2c144c77cfe_0_751)
