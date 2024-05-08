@@ -1,0 +1,16 @@
+# Finetune LLMs
+
+
+
+## Torchtune by PyTorch
+
+![image-20240502125939125](./assets/image-20240502125939125.png)
+
+
+
+
+
+## References
+
+- Tutorial: End-to-End Workflow with torchtune https://pytorch.org/torchtune/stable/tutorials/e2e_flow.html
+- Meta Announces Llama 3 at Weights & Biases’ conference - https://www.youtube.com/watch?v=r3DC_gjFCSA&t=458s

@@ -14,6 +14,41 @@ Ref. [Amazon Bedrock: How good (bad) is Titan Embeddings?](https://www.philschmi
 
 ## Evaluating Models
 
+**TLTR**:
+
+- Benchmarks does normaly not reflect business usecases but general knowledge.
+
+- GTP-4 is used as the judge -> thus certain bias is expected.
+
+  
+
+Building reliable benchmark for LLM chatbots is a challenge [ref. [here](https://lmsys.org/blog/2024-04-19-arena-hard/)]. Examples of challenges are:
+
+- reflect human preference in real-work usecases
+- clearly identify/seperate model capabilities
+
+- avoid overfitting/test set leakage
+
+Below are some highlevel descriptions of some benchmarks for model evaluation:
+
+#### MT-Bench
+
+#### [Arena Hard](https://github.com/lm-sys/arena-hard)
+
+Benchmark from live data from [Chatbot Arena](https://arxiv.org/pdf/2403.04132.pdf).
+
+It contains 500 challenging user queries. GPT-4 is used as the judge to compare the models responses against a baseline model (GPT-4-0314)
+
+See below some examples of questions used by the benchmark from [here](https://github.com/lm-sys/arena-hard/blob/main/data/arena-hard-v0.1/question.jsonl).
+
+```json
+{"question_id":"1f07cf6d146d4038b2b93aaba3935ce0","category":"arena-hard-v0.1","cluster":"AI & Sequence Alignment Challenges","turns":[{"content":"Explain the book the Alignment problem by Brian Christian. Provide a synopsis of themes and analysis. Recommend a bibliography of related reading. "}]}
+
+{"question_id":"379a490a6eae40608abf3501807b2545","category":"arena-hard-v0.1","cluster":"Advanced Algebra and Number Theory","turns":[{"content":" Consider the state:\n$$\\ket{\\psi} = \\frac{\\ket{00} + \\ket{01} + \\ket{10}}{\\sqrt{3}}$$\n\n(a). Calculate the reduced density matrix of the second qubit of $\\ket{\\psi}$."}]}
+
+
+```
+
 
 
 ## Evaluating RAG
@@ -156,10 +191,6 @@ Metrics:
 
 
 ## [LLMTest_NeedleInAHaystack](https://github.com/gkamradt/LLMTest_NeedleInAHaystack)
-
-
-
-
 
 
 

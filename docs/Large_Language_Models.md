@@ -4,6 +4,14 @@
 
 # Background
 
+
+
+![image-20240412113329172](./assets/image-20240412113329172.png)
+
+Ref. from Yann Leccun [video](https://www.youtube.com/watch?v=MiqLoAZFRSE&t=3983s)
+
+
+
 ![example.png](./assets/example-20240125084439497.png)
 
 Figure by [UbiquitousLearning/Efficient LLM and Foundation Models](UbiquitousLearning/Efficient LLM and Foundation Models)
@@ -13,6 +21,28 @@ Figure by [UbiquitousLearning/Efficient LLM and Foundation Models](UbiquitousLea
 ![image-20240312162920195](./assets/image-20240312162920195.png)
 
 Picture from:   Training Large  Foundation Models Using SageMaker HyperPod   by Ian Gibbs - Senior PMT-ES in AI/ML - Gen AI Enablement Weekly Series
+
+
+
+### 1. Generative AI investment skyrockets
+
+![image-20240502125431084](./assets/image-20240502125431084.png)
+
+By IEEE Spectrum https://spectrum.ieee.org/ai-index-2024
+
+
+
+
+
+
+
+# LLM Models
+
+## Llama 3: 
+
+- https://github.com/meta-llama/llama3
+- https://github.com/meta-llama/llama-recipes
+- https://github.com/amitsangani/Llama/blob/main/Building_Using_Llama.ipynb
 
 # Prompt versus Fine Tune versus Pre-training
 
@@ -24,13 +54,170 @@ Guide to when to prompt versus fine tuning considering different organizations?
 
 # 
 
-# Optimizing LLM Inference
+# Optimizing LLM
 
 Techniques such as quantization and distilation has been used to reduce model size.
 
 For example the **[Int8](https://arxiv.org/abs/2208.07339)** inference can reduce memory footprint of large models by a factor of 2x.
 
+
+
+## Flash Attention
+
+The attention layer is the main bottleneck in scaling longer sequences, as its runtime and memory increase quadratically in the sequence length [ref. [FlashAttention-2](https://arxiv.org/abs/2307.08691)].
+
+To reduce computational requirement of attention on such long context, techniques such as ***Flash Attention*** has been proposed to reorder the attention computation and leverages classical techniques such as tilling and recomputation, to speed up and reduce memory usage from quadratic to linear in sequence length (**2-4x faster** than a standard attention implementation). 
+
+To check the list of flash attention adopters, check https://github.com/Dao-AILab/flash-attention/blob/main/usage.md
+
+Before diving into Flash Attention we need to introduce the GPU hardware characteristics 
+
+##### GPU Hardware Characteristics
+
+Main components of a modern GPU are:
+
+- On-chip SRAM (a.k.a. as shared memory e.g. A100 19TB/s - 192KB per 108 streaming)
+- HBM (High Bandwidth Memory) (e.g. A100 - 40-80GB and 1.5-2.0TB/s )
+- SM (streaming multiprocessor) (e.g. A100 - 108 stream multiprocessors )
+  - 1 SM - 1 Thread block -> Warp (1 warp - 32 threads)
+
+
+
+<img src="./assets/image-20240506084744829.png" alt="image-20240506084744829" style="zoom:50%;" />
+
+Picture By DeepLearning Hero. How does matrix multiplication work inside GPUs - https://www.youtube.com/watch?v=wIPdrbZIeKE
+
+
+
+Operations are executed in threads (a.k.a. kernel). Threads are organized into thread blocks, which are scheduled to run on streaming mutiprocessors (SMs)
+
+Within each thread blocks, threads are grouped into warps ( 1 warp equal 3 threads). Threads within a warp can communicate by fast shuffe instructions or cooperate to perform matrix multiply.
+
+Warps within a thread block can communicate by reading from and writing to shared memory. Each kernel loads inputs from HBM to registers and SRAM, computes, then writes outputs to HBM.
+
+
+
+![image-20240506135327900](./assets/image-20240506135327900.png)
+
+Picture By DeepLearning Hero. How does matrix multiplication work inside GPUs - https://www.youtube.com/watch?v=wIPdrbZIeKE
+
+
+
+<img src="./assets/image-20240506094321755.png" alt="image-20240506094321755" style="zoom:50%;" />
+
+Picture by Dissecting the Ampere GPU Architecture through Microbenchmarking - https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s33322/
+
+Table below shows the comparison between certain GPU types across its main characteristics.
+
+| GPU Type                                                     | Architecture  | SM   | HBM             | SRAM | Notes                                                        |
+| ------------------------------------------------------------ | ------------- | ---- | --------------- | ---- | ------------------------------------------------------------ |
+| [A100](https://www.nvidia.com/en-us/data-center/a100/)       | NVIDIA Ampere | 108  | 40 GB (1.5TB/s) |      |                                                              |
+| [H100](https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/) | NVIDIA Hopper | 144  | 80GB(2.0TB/s)   |      | Tensor Memory Accelerator, DPX (Dinamic Programmingh) Instructions, FP8 Tensor Cores, DSMEM (Distributed Shared Memory) |
+| [H200](https://www.nvidia.com/en-us/data-center/h200/)       | NVIDIA Hopper |      | 141GB (4.8TB/s) |      |                                                              |
+
+## Flash Attention Solution
+
+Lots of data loading turns computation in memory bound and not compute bound. 
+
+For each attention head, to reduce memory reads/writes, **FlashAttention** uses classical tiling techniques to load blocks of query, key, and value from GPU HBM (its main memory) to SRAM (its fast cache), compute attention with respect to that block, and write back the output to HBM. This reduction in memory reads/writes brings significant speedup (2-4x) in most cases. [ref. https://www.adept.ai/blog/flashier-attention]
+
+The figure below is from [FlashAttention paper](https://arxiv.org/pdf/2205.14135) showing on the left that FlashAttention uses tiling to prevent materialization of the large 𝑁 × 𝑁 attention matrix (dotted box) on (relatively) slow GPU HBM.
+
+Here in the outer loop (red arrows), FlashAttention loops through blocks of the K and V matrices and loads them to fast on-chip SRAM. In each block, FlashAttention loops over blocks of Q matrix (blue arrows), loading them to SRAM, and writing the output of the attention computation back to HBM.
+
+On the right you see the speedup over the PyTorch implementation of attention on GPT-2. FlashAttention does not read and write the large 𝑁 × 𝑁 attention matrix to HBM, resulting in an 7.6× speedup on the attention computation according to the paper.
+
+![image-20240507155528488](./assets/image-20240507155528488.png)
+
+
+
+### Flash Attention at PyTorch
+
+PyTorch implements flash attention (https://pytorch.org/docs/stable/generated/torch.nn.functional.scaled_dot_product_attention.html).
+
+
+
+
+
+ 
+
+Ref. code snipped example below from [DeepLearning Hero](https://github.com/thushv89/tutorials_deeplearninghero/blob/master/llms/flash_attention_torch.ipynb).
+
+```python
+with torch.backends.cuda.sdp_kernel(
+        enable_flash=False, enable_math=True, enable_mem_efficient=True
+):
+```
+
+Check https://marcelcastrobr.github.io/ for a notebook implementation.
+
+**References:**
+
+- [Ref 0] FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness - https://arxiv.org/abs/2205.14135
+- [Ref1] FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning https://arxiv.org/abs/2307.08691
+- [Ref2] Matrix Multiplication: Inner Product, Outer Product & Systolic Array https://www.adityaagrawal.net/blog/architecture/matrix_multiplication
+- [ref3] Benchmarking and Dissecting the Nvidia Hopper GPU Architecture https://arxiv.org/pdf/2402.13499v1
+- [ref4] NVIDIA Hopper Architecture In-Depth https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/
+- [ref5] FlashAttention: Fast Transformer training with long sequences  https://www.adept.ai/blog/flashier-attention
+- [ref6] AWS Broadcast  https://broadcast.amazon.com/videos/670513?ref=personal
+- [ref.7] Andrej Karpathy implementation - https://twitter.com/karpathy/status/1786461447654125625?s=51
+
+
+
+## Model Pruning
+
+
+
+## Knowledge Distillation
+
+
+
 ## Quantization
+
+Backgroun problem: Larger models but reduce memory capacity on accelerators.
+
+![image-20240422115546209](./assets/image-20240422115546209.png)
+
+Source: Deeplearning.ai course [here](https://learn.deeplearning.ai/courses/quantization-fundamentals/lesson/2/handling-big-models)
+
+Key facts:
+
+- you can quantize the model weights and activations
+
+
+
+
+
+Example:
+
+![image-20240422120051189](./assets/image-20240422120051189.png)
+
+
+
+### Floating  Point
+
+Floating point is defined by three components:
+
+- Sign: positive/negative (1 bit)
+
+- Exponent (range): impact the representable range of the number
+
+- Fraction (precision): impact on the precision of the number
+
+  
+
+**Downcasting:** Loss of data due to the convertion of higher data type  (e.g. float) to a lower data type (integer)
+
+Advantages of Downcasting is:
+
+- reduce memory footprint: more efficient use of memory, enable training of larger models and largers batch sizes
+- increase compute and speed: low precision (fp16, bf16) can be faster than fp32 since it uses less memory.
+
+But disadvantages comes to the less precise computation.
+
+Usecase for Downcasting are:
+
+- do computation in smaller precison and store and update the weights in higher precision.
 
 ### Precision Format
 
@@ -45,6 +232,12 @@ For example, the float16 (FP16) data type, 5 bits are reserved for **exponent** 
 
 
 ![image-20230509074147204](LLM.assets/image-20230509074147204.png)
+
+![image-20240422121320403](./assets/image-20240422121320403.png)
+
+![image-20240422121351859](./assets/image-20240422121351859.png)
+
+
 
 Example below from Coursera course: Generative AI with LLMs.
 
@@ -72,13 +265,15 @@ Thus we need a few GPUs to do inference using Bloom-176B. But, luckily we can st
 
 #### Model Quantization
 
+![image-20240422123407667](./assets/image-20240422123407667.png)
+
+Example from fp32 to bf16:
+
+![image-20240422124540042](./assets/image-20240422124540042.png)
+
 8-bit quantization method used a quarter precision, then reducing the model to 1/4th of its original size. Quantization is done by "rounding" from one data type to another. However this might lead to information loss (i.e. lossy compression)
 
-
-
 LLM.int8() is an example of quantization implemented by HuggingFace Transformers. To achieve zero degradation matrix multiplication for LLM, LLM.int8() remove the performance deterioration caused by outlier features by identifying the outliers from the input hidden states and multiplying it in FP16 and non-outliers in int8.
-
-
 
 A side effect of this quantization is the the model can suffer performance degradtion (15% to 23% slower than the FP16)
 
@@ -298,3 +493,5 @@ Switch Transformer used a simplified strategy os selecting a single-expert. This
 - [SageMaker JumpStartModel API Docs](https://sagemaker.readthedocs.io/en/stable/api/inference/model.html#sagemaker.jumpstart.model.JumpStartModel)
 - Video: [A Survey of Techniques for Maximizing LLM Performance, by OpenAI DevDay](https://www.youtube.com/watch?v=ahnGLM-RC1Y)
 - [Mixture of Experts Explained, By HuggingFace](https://huggingface.co/blog/moe)
+- Yann Lecun, New York University & META Title: Objective-Driven AI: Towards AI systems that can learn, remember, reason, and plan, [video](https://www.youtube.com/watch?v=MiqLoAZFRSE&t=3983s), [ppt](https://drive.google.com/file/d/1wzHohvoSgKGZvzOWqZybjm4M4veKR6t3/view?pli=1)
+- IEEE Spectrum - 15 Graphs That Explain the State of AI in 2024  The AI Index tracks the generative AI boom, model costs, and responsible AI use https://spectrum.ieee.org/ai-index-2024 
