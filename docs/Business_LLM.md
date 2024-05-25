@@ -4,7 +4,11 @@
 
 ## Business General
 
+https://spectrum.ieee.org/ai-index-2024
 
+
+
+## 
 
 ## ISV Specific
 

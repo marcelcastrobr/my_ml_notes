@@ -185,3 +185,8 @@ Picture by Authors
 
 - [Architectural Patterns for Text-to-SQL: Leveraging LLMs for Enhanced BigQuery Interactions](https://medium.com/google-cloud/architectural-patterns-for-text-to-sql-leveraging-llms-for-enhanced-bigquery-interactions-59756a749e15)
 - [12 RAG Pain Points and Proposed Solutions](https://towardsdatascience.com/12-rag-pain-points-and-proposed-solutions-43709939a28c)
+- https://github.com/nerdai/talks/blob/main/2024/mlops/mlops-rag-bootcamp.ipynb
+- https://docs.google.com/presentation/d/1mJUiPBdtf58NfuSEQ7pVSEQ2Oqmek7F1i4gBwR6JDss/edit?pli=1#slide=id.g2c566abeaf8_4_18
+- https://drive.google.com/file/d/1ku8_5NL2Uv95cger7sPTyODJ8uGRDdZ4/view
+- https://www.youtube.com/watch?v=bNqSRNMgwhQ
+- https://docs.smith.langchain.com/cookbook/testing-examples/rag_eval#type-1-reference-answer
