@@ -138,35 +138,40 @@ This metrics aims to penalise inclusion of redundant information. The steps used
 
 
 
-## **[AWS FMEval](https://github.com/aws/fmeval)** (by Amazon)
+## **[AWS FMEval](https://github.com/aws/fmeval)** and [SageMaker Clarify](https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-foundation-model-evaluate.html) (by Amazon)
 
-FMEval library can help to evaluate:
+Amazon SageMaker Clarify (SM Clarify) allows you to evaluate and compare foundation models. FMEval is the open source package for SageMaker Clarify. 
 
--  Open-ended generation
-- Text summarization
-- Question and answer
-- Classification
+FMEval/SM Clarify library can help to evaluate:
 
-Metrics implemented by tool are:
+-  **Open-ended generation**: production of natural human responses to text that does not have a pre-defined structure.
+-  **Text summarization**: generation of a concise and condensed summary while retaining the meaning and key information that's contained in larger text.
+-  **Question and answer**: The generation of a relevant and accurate response to a prompt.
+-  **Classification**: Assigning a category, such as a label or score to text, based on its content.
 
-- Accuracy
-- Toxiticy
-- Semantic Robustness
-- Prompt Stereotyping
+It allows evaluation of models using **automatic model evaluation** and also **human workers evaluation**. 
 
-[RAG + Amazon Bedrock + Knowledge Base](https://github.com/aws-samples/bedrock-kb-rag-workshop)
+Automatic model evaluation metrics implemented by tool are:
 
+- **Accuracy**: numerical score indicating the similarity of the summarization to a reference summary that is accepted as a gold standard. Accuracy of summarization uses the following metrics: ROUGE-N, Meteor, BERTScore. Accuracy of Q&A uses the following metrics: Exact match, quasi-exact-match, F1 over words
+- **Toxiticy**: checks your model for sexual references, rude, unreasonable, hateful or aggressive comments, profanity, insults, flirtations, attacks on identities, and threats
+- **Semantic Robustness**: how much your model output changes as the result of small, semantic-preserving changes in the input
+- **Prompt Stereotyping: **probability of your model encoding biases in its response.
 
-
-Presentation on evaluation and migration.
-
-29th Feb. Fine tuning evaluation.
+Human workers might evaluate your model for more subjective dimentions such as helpfullness or style.
 
 
 
-FMEval Turbo
+Table below shows a summary of the metrics you can use for each tasks using FMEval. 
 
-UA, cost estimation
+
+
+| Tasks versus Metrics      | **Factual knowledge** | **Semantic robustness** | **Prompt stereotyping** | **Toxicity** | Accuracy |
+| ------------------------- | --------------------- | ----------------------- | ----------------------- | ------------ | -------- |
+| **Open-ended generation** | x                     | x                       | x                       | x            | -        |
+| **Text summarization**    | -                     | x                       | -                       | x            | x        |
+| **Question and answer**   | -                     | x                       | -                       | x            | x        |
+| **Classification**        | -                     | x                       | -                       |              | x        |
 
 
 

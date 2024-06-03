@@ -71,10 +71,55 @@ Switch Transformer used a simplified strategy os selecting a single-expert. This
 
 
 
+# MoE Fine-Tuning
+
+Large language models are expensived to be trained. Fine-tuning is an affordable way to take advantage of LLMs while customizing a model on a smaller dataset.
+
+Thus fine-tuning is a customization method that involves further traininig the model. According to [[Fine-tune a foundation model](https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-fine-tuning.html)], fine-tuning might be applicable for the following usecases:
+
+- customize model to business needs (e.g. function calling)
+- adapt the model to a domain-specific language such as technical terms and specialized vocabs.
+- enhance the performance for specific tasks
+- More factual, less toxic and better aligned responses
+
+There are currently two approaches for fine-tuning models:
+
+- domain adaptation fine-tuning
+- Instruction-based fine-tuning
+
+
+
+
+
+**Domain adaptation:**
+
+Used in order to adapt a pre-trained model to **a specific task(s)**. The training dataset is unstructured (no instruction based).
+
+Examples of domain adaptation for Llama2 and Mistral using Amazon SageMaker can be find at [Fine-tune LLaMA 2 models on SageMaker JumpStart](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/llama-2-finetuning.html#Fine-tune-LLaMA-2-models-on-SageMaker-JumpStart)  and [Mistral  Domain adaptation fine-tuning](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/jumpstart-foundation-models/mistral-7b-instruction-domain-adaptation-finetuning.ipynb).
+
+**Instruction-based fine-tuning**
+
+Instruction-based fine-tuning used labeled data to improve performance of pre-trained model on specific tasks. Labeled data is formaed as prompt and response pairs.
+
+Examples of instruction-based fine tuning is [Fine-tune LLaMA 2 models on SageMaker JumpStart](https://sagemaker-examples.readthedocs.io/en/latest/introduction_to_amazon_algorithms/jumpstart-foundation-models/llama-2-finetuning.html#Fine-tune-LLaMA-2-models-on-SageMaker-JumpStart)
+
 # References:
 
 - Video: [A Survey of Techniques for Maximizing LLM Performance, by OpenAI DevDay](https://www.youtube.com/watch?v=ahnGLM-RC1Y)
 
 - [Mixture of Experts Explained, By HuggingFace](https://huggingface.co/blog/moe)
 
+- [Mistral-finetune by Mistral AI](https://github.com/mistralai/mistral-finetune)
+
+- [Fine Tuning with Function Calling on Azure OpenAI Service by Microsoft](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/fine-tuning-with-function-calling-on-azure-openai-service/ba-p/4065968)
+
+- [Fine-tuning with function calling - stock price use case by Azure](https://github.com/Azure-Samples/azureai-samples/tree/main/scenarios/fine-tuning/function%20calling)
+
+- [Fine-tune and Deploy Mistral 7B with Amazon SageMaker JumpStart](https://aws.amazon.com/blogs/machine-learning/fine-tune-and-deploy-mistral-7b-with-amazon-sagemaker-jumpstart/) 
+
+- [Introduction to SageMaker JumpStart - Text Generation with Mistral models](https://github.com/aws/amazon-sagemaker-examples/blob/main/introduction_to_amazon_algorithms/jumpstart-foundation-models/mistral-7b-instruction-domain-adaptation-finetuning.ipynb)
+
+- [Fine Tuning with Function Calling by LlamaIndex](https://docs.llamaindex.ai/en/stable/examples/finetuning/openai_fine_tuning_functions/#fine-tuning-with-function-calling)
+
   
+

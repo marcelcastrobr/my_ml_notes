@@ -51,6 +51,10 @@ Some types of embeddings that is worth mentioning are:
 
 
 
+**Comparing Embeddings**
+
+
+
 ## References:
 
 [~Ref1] [Dan Jurafsky’s book on language models](https://web.stanford.edu/~jurafsky/slp3/6.pdf)
@@ -60,3 +64,5 @@ Some types of embeddings that is worth mentioning are:
 [ ~Ref3] [Principal Component Analysis - PCA - Step-by-step use of PCA for dimensionality reduction.](https://marcelcastrobr.github.io/posts/2021-09-21-pca.html)       
 
 [ ~Ref4] [Natural Language Processing with Deep Learning CS224N, Christopher Manning, Stanford.](https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1214/slides/cs224n-2021-lecture02-wordvecs2.pdf)
+
+[~Ref5] [Tokenizer Arena](https://huggingface.co/spaces/Cognitive-Lab/Tokenizer_Arena) 
