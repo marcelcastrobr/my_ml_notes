@@ -1,4 +1,6 @@
-# LLM: Business Point of View:
+# Generative AI and Business Needs
+
+This section show my notes on business considerations while talking about generative AI.
 
 
 
@@ -100,7 +102,7 @@ Example of KPIs per usecase mix that might be relevant to keep track on are:
 
 
 
-# ISV Specific
+# Generative AI for Software Vendors 
 
 
 
