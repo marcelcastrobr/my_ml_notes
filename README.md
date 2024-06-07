@@ -25,7 +25,7 @@ The contents of this repository are provided for informational purposes only.
 
 #### Generative AI: Business
 
-- [Generative AI and Business Needs]((./docs/Business_LLM.md))
+- [Generative AI and Business Needs](./docs/Business_LLM.md)
 
 
 
