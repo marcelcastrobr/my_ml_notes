@@ -3,11 +3,7 @@ The contents of this repository are provided for informational purposes only.
 
 
 
-![readme](https://raw.githubusercontent.com/marcelcastrobr/my_ml_notes/main/images/readme.svg)
-
-
-
-
+<iframe src="./images/readme.svg"></iframe> 
 
 ## License Summary
 
