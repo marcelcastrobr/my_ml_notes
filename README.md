@@ -14,6 +14,7 @@ The contents of this repository are provided for informational purposes only.
 * [Large Language Models](./docs/Large_Language_Models.md)
 * [RAG (Retrieval Augumented Generation)](./docs/RAG.md)
 * [Evaluating LLMs](./docs/Evaluating_LLMs.md)
+* [Responsible AI](./docs/Responsible_AI.md)
 
 
 
