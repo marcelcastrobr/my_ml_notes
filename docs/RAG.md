@@ -190,3 +190,4 @@ Picture by Authors
 - https://drive.google.com/file/d/1ku8_5NL2Uv95cger7sPTyODJ8uGRDdZ4/view
 - https://www.youtube.com/watch?v=bNqSRNMgwhQ
 - https://docs.smith.langchain.com/cookbook/testing-examples/rag_eval#type-1-reference-answer
+- Building an Observable arXiv RAG Chatbot with LangChain, Chainlit, and Literal AI - https://towardsdatascience.com/building-an-observable-arxiv-rag-chatbot-with-langchain-chainlit-and-literal-ai-9c345fcd1cd8
