@@ -1,4 +1,12 @@
-# Retrieval Augumented Generation
+# Retrieval Augmented Generation
+
+### Document Splitting
+
+Ref. https://dev.to/rutamstwt/langchain-document-splitting-21im
+
+### Chunk Size and Overlap
+
+### Retriever
 
 
 
@@ -98,7 +106,7 @@ Ensure the revised SQL query aligns precisely with the requirements outlined in 
 
 
 
-## Advanced RAG Techniques:
+# Advanced RAG Techniques:
 
 Figure below presents the common failures of a standard RAG method by [Barnett S. et al.](https://arxiv.org/pdf/2401.05856.pdf). Basically those possible common failures are:
 
@@ -169,7 +177,7 @@ Langchain implementation: https://github.com/langchain-ai/langchain/blob/master/
 
 
 
-### [Graph Neural Network with Large Language Models (Amazon)](https://www.amazon.science/publications/graph-neural-prompting-with-large-language-models)
+## [Graph Neural Network with Large Language Models (Amazon)](https://www.amazon.science/publications/graph-neural-prompting-with-large-language-models)
 
 GNN method has th
 
@@ -181,6 +189,81 @@ Picture by Authors
 
 Picture by Authors
 
+## [Contextual Retrieval Preprocessing (By Anthropic)](https://www.anthropic.com/news/contextual-retrieval)
+
+**Takeaways:**
+
+- Embedding + BM25 is better than embedding on their own.
+- Adding context to chunks improves retrieval accuracy.
+- Reranking is better than no reranking but can increase latency.
+
+**Issue**: Embedding models is excellent at capturing semantic relationship, but can miss exact matches. 
+
+**Proposal:**
+
+- Use lexical matching through BM25 (Best Matching 25) to find word and phrase matches in addition to semantic search. Technique useful for queries that include identifiers or technical terms.
+- BM25 works by building upon the TF-IDF (Term Frequency-Inverse Document Frequency) concept. Ref. 
+
+**Solution:**
+
+ The RAG solution proposed (ref. figure below) combine the embedding and BM25 techniques using the steps:
+
+1. Break knowledge base into smaller chunks of text
+2. Create TF-IDF encoding and semantic embedding for these chunks
+3. Use BM25 to find top chunks based on exact matches
+4. Use embedding to find top chunks based on semantic similarity
+5. Combine and deduplicate results from BM25 and semantic search using rank fusion techniques
+6. Add the top-K chunks to the prompt and generate response.
+
+Context Retrieval tries to mitigate the problem of "lacking sufficient context" by prepending chunk-specific explanatory context to each chunk before embedding ("contextual embeddings") and creating the BM25 index ("contextual BM25"). See example bellow for SEC filing example from [article](https://www.anthropic.com/news/contextual-retrieval).
+
+```bash
+original_chunk = "The company's revenue grew by 3% over the previous quarter."
+
+contextualized_chunk = "This chunk is from an SEC filing on ACME corp's performance in Q2 2023; the previous quarter's revenue was $314 million. The company's revenue grew by 3% over the previous quarter."
+```
+
+![image-20240925081635884](./assets/image-20240925081635884.png)
+
+The following prompt is used to generate the context for each chunk
+
+```json
+<document> 
+{{WHOLE_DOCUMENT}} 
+</document> 
+Here is the chunk we want to situate within the whole document 
+<chunk> 
+{{CHUNK_CONTENT}} 
+</chunk> 
+Please give a short succinct context to situate this chunk within the overall document for the purposes of improving search retrieval of the chunk. Answer only with the succinct context and nothing else. 
+```
+
+As highlighted, important consideration while using contextual retrieval are:
+
+- chunk boundaries
+- embedding model
+- custom contextualize prompts
+- number of chunks
+
+Further improvement is achieved using reranking. Reranking is a commonly used filtering technique that ensure most relevant chunks are passed to the model. Basically the steps of reranking are:
+
+1. perform initial retrieval with top candidates (e.g. top 150)
+2. Pass the top-N chunks along with user query through the rerank model.
+3. Rerank model gives each model a score based on relevance and importance to the prompt , and then select the top-K chunks (e.g. top 20).
+4. Pass the top-K  into the model as context and generate answer.
+
+Examples of re-rank models are [Cohere reranker](https://cohere.com/rerank). There is also the possibility to use out-of-box techniques such as the one done in [HyDE](https://arxiv.org/pdf/2212.10496) and [here](https://cookbook.openai.com/examples/question_answering_using_a_search_api).
+
+![image-20240925082248322](./assets/image-20240925082248322.png)
+
+Picture by Author
+
+**Results:**
+
+![image-20240925100145474](./assets/image-20240925100145474.png)
+
+Contextual retrieval notebook example [here](https://github.com/anthropics/anthropic-cookbook/tree/main/skills/contextual-embeddings).
+
 ## References:
 
 - [Architectural Patterns for Text-to-SQL: Leveraging LLMs for Enhanced BigQuery Interactions](https://medium.com/google-cloud/architectural-patterns-for-text-to-sql-leveraging-llms-for-enhanced-bigquery-interactions-59756a749e15)
@@ -191,3 +274,4 @@ Picture by Authors
 - https://www.youtube.com/watch?v=bNqSRNMgwhQ
 - https://docs.smith.langchain.com/cookbook/testing-examples/rag_eval#type-1-reference-answer
 - Building an Observable arXiv RAG Chatbot with LangChain, Chainlit, and Literal AI - https://towardsdatascience.com/building-an-observable-arxiv-rag-chatbot-with-langchain-chainlit-and-literal-ai-9c345fcd1cd8
+- Course: RAG++: From POC to Production, Weights and Bias https://www.wandb.courses/courses/rag-in-production

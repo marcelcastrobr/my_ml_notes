@@ -47,10 +47,10 @@ Today, several countries are discussing AI regulation in some shape or form. Eff
 **Who is impacted:**
 
 - Both public and private actors as long as AI system is placed on the EU market or its use affects people located in EU. Following roles exists:
-  - Providers: Person, institution or body that develops an AI system.
-  - Importers: person established in the union that placed on the market or put into service an AI system
-  - User: any natural or legal person using an AI system.
-  - Distributors: any person in the supply chain, other than providers or the importer, that distribute  an AI available on the EU market.
+  - **Providers**: Person, institution or body that develops an AI system.
+  - **Importers**: person established in the union that placed on the market or put into service an AI system
+  - **User**: any natural or legal person using an AI system.
+  - **Distributors**: any person in the supply chain, other than providers or the importer, that distribute  an AI available on the EU market.
   - Note: AI systems placed on the market, put into service, or used by public and private entities for military, defence or national security purposes, are excluded from the scope. In addition to service for the sole purpose of scientific research and development.
 
 
@@ -73,7 +73,9 @@ Today, several countries are discussing AI regulation in some shape or form. Eff
 
 **Costs:**
 
-Cost of compliance: conformity assessment with need to involve collaboration across the organization. **TODO**: compliance cost example?
+Cost of compliance: conformity assessment with need to involve collaboration across the organization. 
+
+**TODO**: compliance cost example?
 
 Implication of Non-compliance: fines and penalties (2-6% of total worldwide annual turnover depending on the severity) 
 
@@ -87,6 +89,8 @@ Implication of Non-compliance: fines and penalties (2-6% of total worldwide annu
 - Rollout, compliance and oversight of the AI program
 - Learning and development programs to train employees on AI ethical/regulatory (e.g. escalation procedures)
 - Translate AI framework to fit organization(e,g, risk categories, RACI matrix, policies, procedures, workflows, quality assurance/quality improvement )
+
+
 
 ### Regional Differences
 
@@ -128,5 +132,6 @@ In this section, we are highlight differences in regulatory approaches between r
 
 - [The EU’s AI Act and How Companies Can Achieve Compliance](https://hbr.org/2024/02/the-eus-ai-act-and-how-companies-can-achieve-compliance)
 - [Briefing: Artificial intelligence act](https://www.europarl.europa.eu/RegData/etudes/BRIE/2021/698792/EPRS_BRI(2021)698792_EN.pdf)
+- [[PDF ]Regulation (EU) 2024/1689 - Artificial Intelligence Act](https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ:L_202401689)
 
 PS: Text written with help from AI.

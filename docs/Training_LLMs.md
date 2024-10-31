@@ -1,12 +1,16 @@
 # Traininig LLMs
 
-What
-
-How:
-
-## Types of distributed trainning:
 
 
+## RLHF versus DPO:
+
+![image-20241031104807235](./assets/image-20241031104807235.png)
+
+Picture by: [AI Coffee Break Merch](https://www.youtube.com/watch?v=XZLc09hkMwA)
+
+
+
+## Distributed Training:	
 
 Parallelism to the rescue when the model is too big.
 
