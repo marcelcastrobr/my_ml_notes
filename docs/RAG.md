@@ -1,12 +1,18 @@
 # Retrieval Augmented Generation
 
-### Document Splitting
+### 
 
-Ref. https://dev.to/rutamstwt/langchain-document-splitting-21im
+### Criteria to choose right Vector Database
 
-### Chunk Size and Overlap
+Choosing the right database can be difficult as it will depend on the specific application requirements.
 
-### Retriever
+Commonly used aspects that you need to consider are:
+
+- **Feature requirement**: any special search feature needed like hybrid search, multi-vector support, BM25, etc.
+-  **Technical requirement**: any performance needs in terms of low latency, index sharding, reindexing, scalability, multi-tenancy or local deployment.
+- **Operation & Cost Requirements**: are licensing, cost, community support and enterprise options needed
+
+[Here](https://superlinked.com/vector-db-comparison) you find and example of Vector database comparison done by [Dhruv Anand](https://www.linkedin.com/in/dhruv-anand-ainorthstartech/).
 
 
 
@@ -275,3 +281,5 @@ Contextual retrieval notebook example [here](https://github.com/anthropics/anthr
 - https://docs.smith.langchain.com/cookbook/testing-examples/rag_eval#type-1-reference-answer
 - Building an Observable arXiv RAG Chatbot with LangChain, Chainlit, and Literal AI - https://towardsdatascience.com/building-an-observable-arxiv-rag-chatbot-with-langchain-chainlit-and-literal-ai-9c345fcd1cd8
 - Course: RAG++: From POC to Production, Weights and Bias https://www.wandb.courses/courses/rag-in-production
+- Ref. https://dev.to/rutamstwt/langchain-document-splitting-21im
+
