@@ -2,6 +2,90 @@
 
 This section show my notes on business considerations while talking about generative AI.
 
+
+
+[TOC]
+
+
+
+## Generative AI in the Enterprise: Looking into 2024
+
+Back in 2023 several AI specialist were highlighting 2023 as the year of POCs and 2024 the year of production. In this section I will try to identify some key data points to check what has happened in 2024.
+
+As described by [Menlo Ventures](https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/), the AI landscape is been rewritten in real time - AI spending surged 13.8Billion in 2024 - a signal that enterprises are shifting from POCs to production.
+
+Key factors based on Menlo report on ["2024": The State of Generative AI in the Enterprise"](https://menlovc.com/2024-the-state-of-generative-ai-in-the-enterprise/) are: 
+
+- foundation model investment dominates  but application layer is growing fast.
+
+- Few application layer solution in production - 1/3 been prototyped and evaluated
+
+- Most valuable use cases inside enterprise still remain: 
+
+  - **code copilots** (51% adoption) and task specific copilots like AI DevOps Engineering and QA assistant for pipeline generation and test automation.
+  - **support chatbots** capturing  31% enterprise adoption including 24/7, knowledge base support for internal employees and external customers.
+  - **enterprise search and retrieval**  with 27-28% adoption allowing semantic search accross different systems like emails and document stores.
+
+- Enterprise prioritize value over quick wins: *"Return on investment and industry-specific customization matter most when selecting new tools."*
+
+- Vertical application are rising for domains such as healthcare, legal, financial services and media&entertainment.
+
+- multi-model strategy over single model: 3+ foundation models in the AI stack and using different models depending on the usecase or results. Close source model is still majority of usage with 81% market share. 
+
+  ![image-20241219095304144](./assets/image-20241219095304144.png)
+
+Picture by Menlo Ventures,
+
+
+
+![image-20241219093709040](./assets/image-20241219093709040.png)
+
+Picture by Menlo Ventures
+
+![image-20241219095235486](./assets/image-20241219095235486.png)
+
+Picture by Menlo Ventures
+
+
+
+#### Augmenting human workflows over full automation
+
+Here the new word is "Service-as-Software": where AI-driven solution offer the capability of traditional service providers but operate entirely through software.
+
+> "**Service-as-Software**": where AI-driven solution offer the capability of traditional service providers but operate entirely through software.
+
+**Build versus buy** is a decision factor, where Menlo has seen a near-even split of 47% solution been developed in-house while 53% sourced from vendors based on their survey of 600 US IT decision makers at enterprises with 50+ employees.
+
+![image-20241219094606298](./assets/image-20241219094606298.png)
+
+Picture by Menlo Ventures
+
+
+
+#### AI Agents is the new design pattern trend
+
+Retrieval Augmented Generation (RAG) still dominates the adoption by 51% but agentic architectures are already powering 12% of implementations.
+
+AI Agent automation is expected to drive the next wave of AI transformation from complex and multi-step tasks going beyond content generation and knowledge retrieval driving the need for new infrastructure such as agent authentication, tool integration platforms and specialized runtimes for AI-generated code.
+
+![image-20241219095711277](./assets/image-20241219095711277.png)
+
+Picture by Menlo Ventures
+
+
+
+#### AI talent drought will only intensifies
+
+The tech industry is encountering a talent drought - not only shortage of data scientist  but also expert that bridge the gap between AI capabilities and domain-specific expertise. According to report "[AI Compensation Trends: The Real Cost of Top 1% AI Technical Talent](https://menlovc.com/perspective/ai-compensation-trends-the-real-cost-of-top-1-ai-technical-talent/)", AI scientists are at the forefront.
+
+*For example, the median base salary for technical staff at top AI startups is currently $310,000 according to [H1B Salary Database](https://h1bdata.info/).*
+
+![image-20241219100738873](./assets/image-20241219100738873.png)
+
+Picture by Menlo Ventures
+
+
+
 ## Cost of Generative 
 
 To better understand the cost of generative AI usecases, we describe in this section the main elements to consider in order to calculate the cost of generative AI applications.AI
