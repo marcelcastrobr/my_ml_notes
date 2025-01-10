@@ -6,6 +6,25 @@ This section show my notes on business considerations while talking about genera
 
 [TOC]
 
+## Lookout for Agentic AI in 20205
+
+[Agentic AI](https://www.gartner.com/en/articles/intelligent-agent-in-ai?utm_medium=promotion&utm_campaign=RM_GB_2024_ITTRND_WT_LP1_TTT25EBOOKARTICLE&utm_term=hubpage) is listed as one of the the  Gartner Top 10 Strategic Technology Trends for 2025  (ref. [Gartner][ref4]).
+
+As described by  Gartner, "Agentic AI refers to software programs that are designed to independently make decisions and take actions to achieve specific goals." Agentic AI can make decisions, take actions and even learn on its own to achieve a **specific goal**. Agentic AI operates in the following stages (ref. [E. Lisowski](https://medium.com/@elisowski/ai-agents-vs-agentic-ai-whats-the-difference-and-why-does-it-matter-03159ee8c2b4#id_token=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg5Y2UzNTk4YzQ3M2FmMWJkYTRiZmY5NWU2Yzg3MzY0NTAyMDZmYmEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIyMTYyOTYwMzU4MzQtazFrNnFlMDYwczJ0cDJhMmphbTRsamRjbXMwMHN0dGcuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTA0NjM3NTIxMzIxMzQ5MzQzNDgiLCJlbWFpbCI6Im1hcmNlbGNhc3Ryb2JyQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYmYiOjE3MzY0MTI4NjEsIm5hbWUiOiJNYXJjZWwgQ2FzdHJvIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0tmNk9VbTlicXpoY25ZaGtZSU1QT2pDYlczaWlVTUNreDVUU2hKeGJrdXhIMUlBY2VDPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6Ik1hcmNlbCIsImZhbWlseV9uYW1lIjoiQ2FzdHJvIiwiaWF0IjoxNzM2NDEzMTYxLCJleHAiOjE3MzY0MTY3NjEsImp0aSI6IjJlY2I5ODA3MzZkNzUyNGQ2N2NjOTFlZjZhMmE0NDQ2ZmYzZDViMGMifQ.HgP0fp19G5m3swJ-goVaxwpKiUxAXw70qZzSbwj2gUHt0L98SSfH4ZiKLsCMxJPF3mFryPffdNN_Ci_6CaKGCZBtx6V1msCvrtsudRt3ZfeNwI9qE7bdvTgn_1d1CvcLu1-ta6E79E8XESm4wurTkWwkd3r2MuXkuJ9VrxvUsUGe3YnWKQA7KN6gb0eAUK00g_4JbcUGTPZgZRZLFPEfDZuQyWaalgWekCHihHVxbR1jiJGOM1Q-USn0BCqqSfnRrKHZmNUpBm-oBQtsmt4Ou7wc0HvpJ4IyGG13-z8yfRGmVBdUTmMIAJKYJheIZyBSrisZTdD-Lk3IiIQ1ctW5fg),):
+
+- Perception: able to collect data around it.
+- Reasoning: able to process data and derive insights.
+- Action: able to perform tasks based on insights.
+- Learning: able to adapt over time from feedback and experience.
+
+In order to perform the stages, it uses AI techniques with features like memory, planning, sensing the environment, using tools and safety guidelines to carry out tasks towards a specific goal.
+
+Picture below from Gartner presents the different levels of AI Agency found in ref. [Gartner][ref4]. 
+
+![image-20250109101108881](./assets/image-20250109101108881.png)
+
+Picture by Gartner.
+
 
 
 ## Generative AI in the Enterprise: Looking into 2024
@@ -24,7 +43,7 @@ Key factors based on Menlo report on ["2024": The State of Generative AI in the 
 
   - **code copilots** (51% adoption) and task specific copilots like AI DevOps Engineering and QA assistant for pipeline generation and test automation.
   - **support chatbots** capturing  31% enterprise adoption including 24/7, knowledge base support for internal employees and external customers.
-  - **enterprise search and retrieval**  with 27-28% adoption allowing semantic search accross different systems like emails and document stores.
+  - **enterprise search and retrieval**  with 27-28% adoption allowing semantic search across different systems like emails and document stores.
 
 - Enterprise prioritize value over quick wins: *"Return on investment and industry-specific customization matter most when selecting new tools."*
 
@@ -182,7 +201,9 @@ Example of KPIs per usecase mix that might be relevant to keep track on are:
 
 - [ref2]: https://www.gartner.com/en/articles/take-this-view-to-assess-roi-for-generative-ai "Take This View to Assess ROI for Generative AIby Gartner"
 
-- [ref3]: How to Calculate Business Value and Cost for Generative AI Use Cases by Gartner
+- [ ref3 ]: https://www.gartner.com/en/documents/5188263	"How to Calculate Business Value and Cost for Generative AI Use Cases by Gartner"
+
+- [ref4]:   https://www.gartner.com/en/articles/top-technology-trends-2025 "Gartner Top 10 Strategic Technology Trends for 202"
 
 
 
